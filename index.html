@@ -726,16 +726,17 @@
         }
         @media (max-width: 1024px) {
             .benchmark-main-grid {
-                flex-direction: column;
+                display: block;
             }
             
             .benchmark-group-left,
             .benchmark-group-right {
                 width: 100%;
+                margin-bottom: 20px;
             }
             
             .benchmark-card-row {
-                flex-direction: column;
+                display: block;
             }
             
             .benchmark-card-row .benchmark-card {
@@ -743,13 +744,51 @@
                 margin-bottom: 20px;
             }
             
-            .benchmark-tab-group {
-                border-radius: 8px;
+            /* 移动端卡片样式 */
+            .benchmark-card {
+                border-radius: 0 0 16px 16px;
+                margin-top: 0;
             }
             
-            .benchmark-card {
-                min-height: 180px;
-                padding: 22px 14px 18px 14px;
+            /* 确保移动端上显示为三个独立卡片 */
+            .mobile-benchmark-section {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* 在移动端显示，在PC端隐藏 */
+            .mobile-benchmark-section {
+                display: block;
+                margin-bottom: 20px;
+            }
+            
+            /* PC端布局在移动端隐藏 */
+            .desktop-benchmark-section {
+                display: none;
+            }
+            
+            .mobile-benchmark-card {
+                margin-bottom: 20px;
+            }
+            
+            .mobile-benchmark-title {
+                background: var(--primary-color);
+                color: #fff;
+                font-size: 1.25rem;
+                font-weight: 600;
+                border-radius: 0;
+                padding: 16px 0;
+                text-align: center;
+                margin-bottom: 0;
+                width: 100%;
+            }
+            
+            .mobile-benchmark-content {
+                background: #fff;
+                border-radius: 0 0 16px 16px;
+                box-shadow: 0 4px 24px 0 rgba(26,86,219,0.06);
+                padding: 20px;
             }
         }
     </style>
@@ -851,7 +890,9 @@
                 <h2 style="font-size:2.8rem; color:var(--primary-color); font-weight:700; margin-bottom: 12px;">标杆奖项</h2>
                 <p style="font-size:1.2rem; color:#222; margin-bottom: 32px;">【投流+直播+工具】标杆奖项评判标准</p>
             </div>
-            <div style="display: flex; flex-direction: column; margin-bottom: 40px;">
+            
+            <!-- PC端的布局 -->
+            <div class="desktop-benchmark-section" style="display: flex; flex-direction: column; margin-bottom: 40px;">
                 <!-- 上方标题区域 -->
                 <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
                     <div style="width: 66%;">
@@ -896,6 +937,37 @@
                             <div class="benchmark-desc">2. 每条到访奖励 <span class="benchmark-highlight">50元</span>；（单周10组可大群通报奖励）</div>
                             <div class="benchmark-desc">3. 每套成交奖励 <span class="benchmark-highlight">500元</span>（大群海报通报）</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 移动端的布局 -->
+            <div class="mobile-benchmark-section">
+                <div class="mobile-benchmark-card">
+                    <div class="mobile-benchmark-title">总裁特别奖</div>
+                    <div class="mobile-benchmark-content">
+                        <p style="color: var(--primary-color); font-size: 0.9rem; margin-bottom: 15px; text-align: center;">以上任一符合条件的前5个名额可申报标杆，先报先得</p>
+                        <div class="benchmark-title"><span class="benchmark-icon">🏅</span>续费标杆</div>
+                        <div class="benchmark-desc">📄 指标说明：历史已签约的投流合同，客户基于效果继续付费续签合同的项目（投流续费&机器人续费）</div>
+                        <div class="benchmark-desc">📊 激励奖金：每续费一个项目，由广分总裁通衡颁发奖金 <span class="benchmark-highlight">1000元</span>（售前50%，交付50%）</div>
+                    </div>
+                </div>
+                
+                <div class="mobile-benchmark-card">
+                    <div class="mobile-benchmark-content">
+                        <div class="benchmark-title"><span class="benchmark-icon">🌟</span>推广标杆</div>
+                        <div class="benchmark-desc">📄 指标说明：试点项目获得客户认可，在同公司成功推广到其他项目，并完成签约（投流&机器人）</div>
+                        <div class="benchmark-desc">📊 激励奖金：每一个客户推广成功，由广分总裁通衡颁发奖金 <span class="benchmark-highlight">1000元</span>（售前50%，交付50%）</div>
+                    </div>
+                </div>
+                
+                <div class="mobile-benchmark-card">
+                    <div class="mobile-benchmark-title">业务成功奖</div>
+                    <div class="mobile-benchmark-content">
+                        <div class="benchmark-title"><span class="benchmark-icon">💎</span>业务成功奖</div>
+                        <div class="benchmark-desc">1. 线索成本低于或等于城市平均大盘的场次（比如广州450元/条），每条有效线索（自己人和客户的水军不算）：奖励 <span class="benchmark-highlight">10元</span>；</div>
+                        <div class="benchmark-desc">2. 每条到访奖励 <span class="benchmark-highlight">50元</span>；（单周10组可大群通报奖励）</div>
+                        <div class="benchmark-desc">3. 每套成交奖励 <span class="benchmark-highlight">500元</span>（大群海报通报）</div>
                     </div>
                 </div>
             </div>
