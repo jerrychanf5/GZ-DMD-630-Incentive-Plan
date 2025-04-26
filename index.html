@@ -243,46 +243,78 @@
             padding: 0 var(--card-padding);
         }
         
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: var(--card-padding);
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
+        /* 统一卡片基础样式 */
+        .card, .benchmark-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px 0 rgba(26,86,219,0.06);
             display: flex;
             flex-direction: column;
-            touch-action: manipulation;
+            align-items: flex-start;
+            justify-content: flex-start;
+            min-height: 260px;
+            height: 100%;
+            padding: 32px 28px 28px 28px;
+            font-size: 1rem;
+            color: #1f2937;
+            position: relative;
+            transition: all 0.3s ease;
         }
         
+        /* 统一hover效果 */
         @media (hover: hover) {
-            .card:hover {
+            .card:hover, .benchmark-card:hover {
                 transform: translateY(-5px);
-                box-shadow: var(--hover-shadow);
+                box-shadow: 0 8px 32px 0 rgba(26,86,219,0.12);
             }
         }
         
-        .card-icon {
-            font-size: var(--icon-size);
+        /* 统一卡片图标样式 */
+        .card-icon, .benchmark-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            line-height: 1;
             color: var(--primary-color);
-            margin-bottom: var(--element-spacing);
-            min-height: var(--min-touch-target);
+        }
+        
+        /* 统一标题样式 */
+        .card h3, .benchmark-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
+            gap: 8px;
         }
         
-        .card h3 {
-            font-size: var(--h3-size);
-            color: var(--text-color);
-            margin-bottom: var(--element-spacing);
-            line-height: 1.3;
+        /* 统一描述文本样式 */
+        .card p, .benchmark-desc {
+            font-size: 1rem;
+            color: #444;
+            font-weight: normal;
+            margin-bottom: 0.5em;
+            line-height: 1.8;
         }
         
-        .card p {
-            color: #666;
-            font-size: var(--p-size);
-            line-height: 1.6;
-            margin-bottom: calc(var(--element-spacing) / 2);
+        /* 统一高亮样式 */
+        .highlight, .benchmark-highlight {
+            display: inline-block;
+            background: #eaf1fd;
+            color: #1a56db;
+            font-weight: bold;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 1.05em;
+            margin: 0 2px;
+        }
+        
+        /* 响应式适配 */
+        @media (max-width: 1024px) {
+            .card, .benchmark-card {
+                min-height: 180px;
+                padding: 22px 14px 18px 14px;
+            }
         }
         
         .note {
@@ -377,9 +409,10 @@
         /* 底部区域优化 */
         .footer {
             background: #1f2937;
-            padding: clamp(40px, 8vh, 60px) 0 clamp(20px, 4vh, 30px);
+            background: linear-gradient(135deg, #1a56db 0%, #1f2937 100%);
+            padding: clamp(40px, 5vh, 50px) 0 clamp(20px, 3vh, 30px);
             position: relative;
-            min-height: 300px;
+            min-height: 200px;
             overflow: hidden;
             margin-top: var(--section-spacing);
         }
@@ -390,43 +423,53 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 120px), 1fr));
-            gap: var(--element-spacing);
-            padding: var(--card-padding);
             overflow: hidden;
         }
         
         .employee-item {
             color: white;
             opacity: 0;
-            position: relative;
+            position: absolute;
             text-align: center;
-            font-size: var(--p-size);
+            font-weight: 500;
             transform: scale(var(--scale, 0.8));
-            transition: all 0.5s ease;
-            padding: calc(var(--min-touch-target) / 3);
-            min-height: var(--min-touch-target);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            animation: fadeInOut 5s ease-in-out infinite;
+            animation: fadeInOut var(--duration, 3s) ease-in-out 1;
+            animation-fill-mode: forwards;
             animation-delay: var(--delay, 0s);
+            z-index: var(--z-index, 1);
+            padding: 0;
+            margin: 0;
+            pointer-events: none;
+        }
+        
+        .employee-item .emoji {
+            font-size: calc(1.2em + 0.7vw);
+            margin-bottom: 3px;
+            line-height: 1;
+        }
+        
+        .employee-item .name {
+            font-size: calc(0.6em + 0.4vw);
+            line-height: 1;
         }
         
         @keyframes fadeInOut {
             0% {
                 opacity: 0;
-                transform: translateY(20px) scale(0.8);
+                transform: translateY(10px) scale(var(--scale, 0.8));
             }
-            20%, 80% {
+            15%, 85% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(var(--scale, 0.8));
             }
             100% {
                 opacity: 0;
-                transform: translateY(-20px) scale(0.8);
+                transform: translateY(-10px) scale(var(--scale, 0.8));
             }
         }
         
@@ -503,6 +546,210 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
+            }
+        }
+        
+        /* 标杆奖项卡片还原为截图风格 */
+        .benchmark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+        .benchmark-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px 0 rgba(26,86,219,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            min-height: 260px;
+            padding: 32px 28px 28px 28px;
+            font-size: 1rem;
+            color: #1f2937;
+            position: relative;
+            transition: box-shadow 0.3s;
+        }
+        @media (hover: hover) {
+            .benchmark-card:hover {
+                box-shadow: 0 8px 32px 0 rgba(26,86,219,0.12);
+            }
+        }
+        .benchmark-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+        .benchmark-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .benchmark-desc {
+            font-size: 1rem;
+            color: #444;
+            font-weight: normal;
+            margin-bottom: 0.5em;
+            line-height: 1.8;
+        }
+        .benchmark-highlight {
+            display: inline-block;
+            background: #eaf1fd;
+            color: #1a56db;
+            font-weight: bold;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 1.05em;
+            margin: 0 2px;
+        }
+        @media (max-width: 1024px) {
+            .benchmark-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .benchmark-card {
+                min-height: 180px;
+                padding: 22px 14px 18px 14px;
+            }
+        }
+        .benchmark-tabs {
+            display: flex;
+            gap: 24px;
+            margin: 36px 0 8px 0;
+        }
+        .benchmark-tab {
+            background: var(--primary-color);
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: 8px 8px 0 0;
+            padding: 16px 48px;
+            cursor: pointer;
+            transition: background 0.2s;
+            user-select: none;
+            opacity: 0.85;
+        }
+        .benchmark-tab-active {
+            background: var(--primary-color);
+            opacity: 1;
+        }
+        .benchmark-group-desc {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 24px;
+            margin-left: 8px;
+        }
+        @media (max-width: 1024px) {
+            .benchmark-tabs {
+                flex-direction: column;
+                gap: 8px;
+                margin: 24px 0 8px 0;
+            }
+            .benchmark-tab {
+                border-radius: 8px;
+                padding: 12px 0;
+                text-align: center;
+                width: 100%;
+            }
+            .benchmark-group-desc {
+                margin-left: 0;
+                text-align: center;
+            }
+        }
+        .benchmark-main-grid {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .benchmark-group-left {
+            width: 66%;
+            display: flex;
+            flex-direction: column;
+        }
+        .benchmark-group-right {
+            width: 32%;
+            display: flex;
+            flex-direction: column;
+        }
+        .benchmark-tab-group {
+            background: var(--primary-color);
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: 8px 8px 0 0;
+            padding: 16px 0;
+            text-align: center;
+            margin-bottom: 0;
+            width: 100%;
+        }
+        .benchmark-group-desc {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 18px;
+            margin-top: 2px;
+            text-align: center;
+        }
+        .benchmark-card-row {
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+        }
+        .benchmark-card-row .benchmark-card {
+            width: 48%;
+        }
+        .benchmark-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px 0 rgba(26,86,219,0.06);
+            padding: 32px 28px 28px 28px;
+            font-size: 1rem;
+            color: #1f2937;
+            position: relative;
+            min-height: 260px;
+            height: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        @media (hover: hover) {
+            .benchmark-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 32px 0 rgba(26,86,219,0.12);
+            }
+        }
+        @media (max-width: 1024px) {
+            .benchmark-main-grid {
+                flex-direction: column;
+            }
+            
+            .benchmark-group-left,
+            .benchmark-group-right {
+                width: 100%;
+            }
+            
+            .benchmark-card-row {
+                flex-direction: column;
+            }
+            
+            .benchmark-card-row .benchmark-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .benchmark-tab-group {
+                border-radius: 8px;
+            }
+            
+            .benchmark-card {
+                min-height: 180px;
+                padding: 22px 14px 18px 14px;
             }
         }
     </style>
@@ -600,52 +847,60 @@
         </section>
 
         <section class="content-section tab-content" id="tab3">
-            <div class="section-title">
-                <h2>标杆奖项</h2>
-                <p>【投流+直播+工具】标杆奖项评判标准</p>
+            <div class="section-title" style="margin-bottom: 0;">
+                <h2 style="font-size:2.8rem; color:var(--primary-color); font-weight:700; margin-bottom: 12px;">标杆奖项</h2>
+                <p style="font-size:1.2rem; color:#222; margin-bottom: 32px;">【投流+直播+工具】标杆奖项评判标准</p>
             </div>
-
-            <!-- 奖项标题区域 -->
-            <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px;">
-                <!-- 总裁特别奖 -->
-                <div style="background-color: #1a56db; color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 24px; border-radius: 8px;">
-                    总裁特别奖
-                    <p style="font-size: 16px; margin-top: 8px; opacity: 0.9;">以下任一符合条件的前5个名额可申报标杆，先报先得</p>
+            <div style="display: flex; flex-direction: column; margin-bottom: 40px;">
+                <!-- 上方标题区域 -->
+                <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                    <div style="width: 66%;">
+                        <div class="benchmark-tab-group" style="background: var(--primary-color); color: #fff; font-size: 1.25rem; font-weight: 600; border-radius: 8px 8px 0 0; padding: 16px 0; text-align: center; margin-bottom: 0; width: 100%;">总裁特别奖</div>
+                    </div>
+                    <div style="width: 32%;">
+                        <div class="benchmark-tab-group" style="background: var(--primary-color); color: #fff; font-size: 1.25rem; font-weight: 600; border-radius: 8px 8px 0 0; padding: 16px 0; text-align: center; margin-bottom: 0; width: 100%;">业务成功奖</div>
+                    </div>
                 </div>
-                <!-- 业务成功奖 -->
-                <div style="background-color: #1a56db; color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 24px; border-radius: 8px;">
-                    业务成功奖
+                
+                <!-- 描述文本区域 -->
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <div style="width: 66%;">
+                        <div class="benchmark-group-desc" style="color: var(--primary-color); font-size: 1rem; margin-bottom: 5px; margin-top: 2px; text-align: center;">以上任一符合条件的前5个名额可申报标杆，先报先得</div>
+                    </div>
+                    <div style="width: 32%;">
+                        <!-- 空的描述区，保持对齐 -->
+                    </div>
                 </div>
-            </div>
-
-            <!-- 总裁特别奖对应的卡片 -->
-            <div class="card-grid" style="margin-bottom: 30px;">
-                <div class="card">
-                    <div class="card-icon">🏅</div>
-                    <h3>续费标杆</h3>
-                    <p>📋 指标说明：历史已签约的投流合同，客户基于效果继续付费续签合同的项目（投流续费&机器人续费）<br>
-                       📊 激励奖金：每续费一个项目，由广分总裁通衡颁发奖金<span class="highlight">1000元</span>（售前50%，交付50%）</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🌟</div>
-                    <h3>推广标杆</h3>
-                    <p>📋 指标说明：试点项目获得客户认可，在同公司成功推广到其他项目，并完成签约（投流&机器人）<br>
-                       📊 激励奖金：每一个客户推广成功，由广分总裁通衡颁发奖金<span class="highlight">1000元</span>（售前50%，交付50%）</p>
-                </div>
-            </div>
-
-            <!-- 业务成功奖对应的卡片 -->
-            <div class="card-grid">
-                <div class="card" style="grid-column: 1 / -1;">
-                    <div class="card-icon">💎</div>
-                    <h3>业务成功奖</h3>
-                    <p>1. 线索成本低于或等于城市平均大盘的场次（比如广州450元/条），每条有效线索（自己人和客户的水军不算）：奖励<span class="highlight">10元</span>；<br>
-                       2. 每条到访奖励<span class="highlight">50元</span>；（单周10组可大群通报奖励）<br>
-                       3. 每套成交奖励<span class="highlight">500元</span>（大群海报通报）</p>
+                
+                <!-- 卡片区域 - 使用弹性布局确保所有卡片高度一致 -->
+                <div style="display: flex; justify-content: space-between; align-items: stretch;">
+                    <!-- 左侧两个卡片 -->
+                    <div style="width: 66%; display: flex; justify-content: space-between;">
+                        <div class="benchmark-card" style="width: 48%;">
+                            <div class="benchmark-title"><span class="benchmark-icon">🏅</span>续费标杆</div>
+                            <div class="benchmark-desc">📄 指标说明：历史已签约的投流合同，客户基于效果继续付费续签合同的项目（投流续费&机器人续费）</div>
+                            <div class="benchmark-desc">📊 激励奖金：每续费一个项目，由广分总裁通衡颁发奖金 <span class="benchmark-highlight">1000元</span>（售前50%，交付50%）</div>
+                        </div>
+                        <div class="benchmark-card" style="width: 48%;">
+                            <div class="benchmark-title"><span class="benchmark-icon">🌟</span>推广标杆</div>
+                            <div class="benchmark-desc">📄 指标说明：试点项目获得客户认可，在同公司成功推广到其他项目，并完成签约（投流&机器人）</div>
+                            <div class="benchmark-desc">📊 激励奖金：每一个客户推广成功，由广分总裁通衡颁发奖金 <span class="benchmark-highlight">1000元</span>（售前50%，交付50%）</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧一个卡片 -->
+                    <div style="width: 32%;">
+                        <div class="benchmark-card" style="width: 100%;">
+                            <div class="benchmark-title"><span class="benchmark-icon">💎</span>业务成功奖</div>
+                            <div class="benchmark-desc">1. 线索成本低于或等于城市平均大盘的场次（比如广州450元/条），每条有效线索（自己人和客户的水军不算）：奖励 <span class="benchmark-highlight">10元</span>；</div>
+                            <div class="benchmark-desc">2. 每条到访奖励 <span class="benchmark-highlight">50元</span>；（单周10组可大群通报奖励）</div>
+                            <div class="benchmark-desc">3. 每套成交奖励 <span class="benchmark-highlight">500元</span>（大群海报通报）</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        </div>
+    </div>
 
     <footer class="footer">
         <div id="employeeContainer" class="employee-container"></div>
@@ -720,9 +975,15 @@
                 contents[index].classList.add('active');
             };
             
-            // 初始化并定期更新员工显示
+            // 初始化员工名字显示
             updateEmployeeDisplay();
-            setInterval(updateEmployeeDisplay, 5000);
+            
+            // 如果页面可见性变化，重新开始员工显示
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) {
+                    updateEmployeeDisplay();
+                }
+            });
         });
         
         // 优化的开始展示函数
@@ -910,6 +1171,275 @@
             { name: "张桦淳", emoji: "🎋" },
             { name: "黄焕鹏", emoji: "🦅" }
         ];
+
+        // 记录当前显示的员工
+        let currentlyDisplayedEmployees = new Set();
+
+        // 修改员工显示逻辑，加快显示速度并增加同时显示数量
+        function updateEmployeeDisplay() {
+            const container = document.getElementById('employeeContainer');
+            if (!container) return;
+            
+            // 清空现有内容和记录
+            container.innerHTML = '';
+            currentlyDisplayedEmployees.clear();
+            
+            // 随机打乱员工顺序
+            const shuffledEmployees = [...employees].sort(() => Math.random() - 0.5);
+            
+            // 大幅增加初始显示数量（15-25人）
+            const displayCount = Math.floor(Math.random() * 11) + 15;
+            const displayEmployees = shuffledEmployees.slice(0, displayCount);
+            
+            // 记录已占用的位置
+            const occupiedAreas = [];
+            
+            // 为每个员工创建元素并随机设置位置、大小和动画参数
+            // 使用批量添加并设置不同的延迟，确保同时显示多个
+            displayEmployees.forEach((employee, index) => {
+                // 无需等待前一个添加完成，立即添加下一个
+                setTimeout(() => {
+                    if (container.parentNode) { // 确保容器仍然存在
+                        addEmployeeWithoutOverlap(employee, container, occupiedAreas, true);
+                    }
+                }, index * 100); // 每个名字间隔100毫秒添加，确保不全部同时执行碰撞检测
+            });
+            
+            // 更快地添加新员工（每0.5-1.5秒）
+            setTimeout(() => {
+                if (!document.hidden) {
+                    addRandomEmployee(occupiedAreas);
+                }
+            }, Math.random() * 500 + 500);
+        }
+
+        // 添加随机员工函数
+        function addRandomEmployee(existingAreas = []) {
+            const container = document.getElementById('employeeContainer');
+            if (!container) return;
+            
+            // 获取当前所有员工元素的位置信息
+            const currentElements = container.querySelectorAll('.employee-item');
+            const occupiedAreas = [...existingAreas];
+            
+            // 仅收集实际可见元素的位置
+            currentElements.forEach(el => {
+                if (el.style.opacity !== '0' && el.offsetWidth > 0) {
+                    const rect = {
+                        left: parseFloat(el.style.left),
+                        top: parseFloat(el.style.top),
+                        width: el.offsetWidth / 2, // 降低碰撞范围，允许名字更靠近
+                        height: el.offsetHeight / 2
+                    };
+                    occupiedAreas.push(rect);
+                }
+            });
+            
+            // 每次尝试添加3-5个新员工
+            const numberOfNewEmployees = Math.floor(Math.random() * 3) + 3;
+            
+            for (let i = 0; i < numberOfNewEmployees; i++) {
+                // 延迟添加，避免同时执行太多碰撞检测
+                setTimeout(() => {
+                    // 从未显示的员工中随机选择一个
+                    const availableEmployees = employees.filter(emp => !currentlyDisplayedEmployees.has(emp.name));
+                    
+                    // 如果所有员工都已显示，重置集合
+                    if (availableEmployees.length === 0) {
+                        currentlyDisplayedEmployees.clear();
+                        return;
+                    }
+                    
+                    const randomEmployee = availableEmployees[Math.floor(Math.random() * availableEmployees.length)];
+                    
+                    // 添加员工元素，放宽重叠限制
+                    addEmployeeWithoutOverlap(randomEmployee, container, occupiedAreas, true);
+                }, i * 100);
+            }
+            
+            // 如果页面可见，则继续循环添加下一组
+            if (!document.hidden) {
+                // 更快的添加频率（每0.5-1.5秒）
+                setTimeout(() => addRandomEmployee(), Math.random() * 1000 + 500);
+            }
+        }
+
+        // 添加员工元素，确保不与现有元素重叠，但放宽限制
+        function addEmployeeWithoutOverlap(employee, container, occupiedAreas, allowSomeOverlap = false) {
+            // 尝试15次找到不重叠的位置
+            for (let attempt = 0; attempt < 15; attempt++) {
+                // 随机位置
+                const left = Math.random() * 90 + 5; // 5% - 95%
+                const top = Math.random() * 70 + 15; // 15% - 85%
+                
+                // 随机大小 (0.6 - 1.2)，略微减小整体大小
+                const scale = 0.6 + Math.random() * 0.6;
+                
+                // 估计元素尺寸 - 减小预估尺寸以允许更多元素
+                const width = 60 * scale; // 减小估计宽度
+                const height = 40 * scale; // 减小估计高度
+                
+                // 检查是否与现有元素重叠
+                const newRect = {
+                    left: left,
+                    top: top,
+                    width: width,
+                    height: height
+                };
+                
+                let overlaps = false;
+                for (const rect of occupiedAreas) {
+                    // 如果允许部分重叠，使用更宽松的重叠检测
+                    if (allowSomeOverlap ? isHeavilyOverlapping(newRect, rect) : isOverlapping(newRect, rect)) {
+                        overlaps = true;
+                        break;
+                    }
+                }
+                
+                // 如果不重叠或重叠可接受，创建元素
+                if (!overlaps) {
+                    const div = document.createElement('div');
+                    div.className = 'employee-item';
+                    
+                    // 添加emoji和名字
+                    const emojiSpan = document.createElement('span');
+                    emojiSpan.className = 'emoji';
+                    emojiSpan.textContent = employee.emoji;
+                    
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'name';
+                    nameSpan.textContent = employee.name;
+                    
+                    div.appendChild(emojiSpan);
+                    div.appendChild(nameSpan);
+                    
+                    // 设置位置和样式
+                    div.style.left = `${left}%`;
+                    div.style.top = `${top}%`;
+                    div.style.setProperty('--scale', scale);
+                    
+                    // 更短的动画持续时间 (2-3秒)
+                    const duration = 2 + Math.random();
+                    div.style.setProperty('--duration', `${duration}s`);
+                    
+                    // 更短的随机延迟 (0-0.8秒)
+                    const delay = Math.random() * 0.8; 
+                    div.style.setProperty('--delay', `${delay}s`);
+                    
+                    // 随机z-index (1-5)
+                    const zIndex = Math.floor(Math.random() * 5) + 1;
+                    div.style.setProperty('--z-index', zIndex);
+                    
+                    // 记录这个区域
+                    occupiedAreas.push(newRect);
+                    
+                    // 记录这个员工名已显示
+                    currentlyDisplayedEmployees.add(employee.name);
+                    
+                    // 添加到容器
+                    container.appendChild(div);
+                    
+                    // 动画结束后移除元素并从当前显示集合中移除
+                    setTimeout(() => {
+                        if (div.parentNode === container) {
+                            div.remove();
+                            currentlyDisplayedEmployees.delete(employee.name);
+                        }
+                    }, (duration + delay) * 1000 + 100);
+                    
+                    return true;
+                }
+            }
+            
+            // 多次尝试后仍未找到合适位置，如果允许部分重叠，尝试强制放置
+            if (allowSomeOverlap) {
+                // 强制放置到随机位置
+                const left = Math.random() * 90 + 5;
+                const top = Math.random() * 70 + 15;
+                const scale = 0.6 + Math.random() * 0.6;
+                
+                const div = document.createElement('div');
+                div.className = 'employee-item';
+                
+                const emojiSpan = document.createElement('span');
+                emojiSpan.className = 'emoji';
+                emojiSpan.textContent = employee.emoji;
+                
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'name';
+                nameSpan.textContent = employee.name;
+                
+                div.appendChild(emojiSpan);
+                div.appendChild(nameSpan);
+                
+                div.style.left = `${left}%`;
+                div.style.top = `${top}%`;
+                div.style.setProperty('--scale', scale);
+                
+                const duration = 2 + Math.random();
+                div.style.setProperty('--duration', `${duration}s`);
+                
+                const delay = Math.random() * 0.8;
+                div.style.setProperty('--delay', `${delay}s`);
+                
+                const zIndex = Math.floor(Math.random() * 5) + 1;
+                div.style.setProperty('--z-index', zIndex);
+                
+                currentlyDisplayedEmployees.add(employee.name);
+                container.appendChild(div);
+                
+                setTimeout(() => {
+                    if (div.parentNode === container) {
+                        div.remove();
+                        currentlyDisplayedEmployees.delete(employee.name);
+                    }
+                }, (duration + delay) * 1000 + 100);
+                
+                return true;
+            }
+            
+            return false;
+        }
+
+        // 检查两个矩形是否有严重重叠（允许轻微重叠）
+        function isHeavilyOverlapping(rect1, rect2) {
+            // 为元素之间添加非常小的间隔
+            const padding = 2;
+            
+            // 增加重叠容忍度，只有当一个矩形的中心点在另一个矩形内部时才算重叠
+            const rect1CenterX = rect1.left + rect1.width / 2;
+            const rect1CenterY = rect1.top + rect1.height / 2;
+            
+            // 检查中心点是否在另一个矩形内
+            if (rect1CenterX >= rect2.left - padding && 
+                rect1CenterX <= rect2.left + rect2.width + padding &&
+                rect1CenterY >= rect2.top - padding && 
+                rect1CenterY <= rect2.top + rect2.height + padding) {
+                return true; // 重叠严重
+            }
+            
+            return false; // 不重叠或重叠不严重
+        }
+
+        // 标准重叠检测（更严格）
+        function isOverlapping(rect1, rect2) {
+            // 为元素之间添加间隔
+            const padding = 5;
+            
+            const rect1Right = rect1.left + rect1.width + padding;
+            const rect1Bottom = rect1.top + rect1.height + padding;
+            const rect2Right = rect2.left + rect2.width + padding;
+            const rect2Bottom = rect2.top + rect2.height + padding;
+            
+            // 检查是否不重叠
+            if (rect1.left > rect2Right || rect2.left > rect1Right ||
+                rect1.top > rect2Bottom || rect2.top > rect1Bottom) {
+                return false;
+            }
+            
+            // 重叠
+            return true;
+        }
     </script>
 </body>
 </html> 
