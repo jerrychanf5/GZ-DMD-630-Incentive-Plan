@@ -502,6 +502,18 @@
             .benchmark-card.promotion-card {
                 order: 2;
             }
+            
+            /* 移动端标题卡片布局重置 */
+            .benchmark-title-cards {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .benchmark-title-card.president-award,
+            .benchmark-title-card.business-award {
+                flex: 1;
+                width: 100%;
+            }
         }
         
         @media (max-width: var(--mobile)) {
@@ -1072,9 +1084,9 @@
                 <p style="font-size:1.2rem; color:#222;">【投流+直播+工具】标杆奖项评判标准</p>
             </div>
             <!-- 两个蓝色标签 -->
-            <div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 5px;">
-                <div style="flex: 1; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600;">总裁特别奖</div>
-                <div style="flex: 1; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600;">业务成功奖</div>
+            <div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 5px;" class="benchmark-title-cards">
+                <div style="flex: 2; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600;" class="benchmark-title-card president-award">总裁特别奖</div>
+                <div style="flex: 1; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600;" class="benchmark-title-card business-award">业务成功奖</div>
             </div>
             <!-- 说明文本 -->
             <div style="text-align: center; margin-bottom: 20px; color: #666;">符合总裁特别奖条件的前5个名额可申报标杆，先报先得</div>
