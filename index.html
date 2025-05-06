@@ -1104,23 +1104,85 @@
                 <h2 style="font-size:2.5rem; color:var(--primary-color); font-weight:700; margin-bottom: 12px;">标杆奖项</h2>
                 <p style="font-size:1.2rem; color:#222;">【投流+直播+工具】标杆奖项评判标准</p>
             </div>
-            <!-- 两个蓝色标签 -->
-            <div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 5px;" class="benchmark-title-cards">
-                <div style="flex: 2; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600;" class="benchmark-title-card president-award">总裁特别奖</div>
-                <div style="flex: 1; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600;" class="benchmark-title-card business-award">业务成功奖</div>
-            </div>
-            <!-- 说明文本 -->
-            <div style="text-align: center; margin-bottom: 20px; color: #666;">符合总裁特别奖条件的前5个名额可申报标杆，先报先得</div>
-            <!-- 三个卡片 -->
-            <div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 40px; flex-wrap: wrap;" class="benchmark-cards-container">
-                <!-- 续费标杆卡片 -->
-                <div style="flex: 1; min-width: 300px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" class="benchmark-card renewal-card">
-                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                        <span style="font-size: 2rem; margin-right: 10px; color: #f59e0b;">🏅</span>
-                        <span style="font-size: 1.2rem; font-weight: 600;">续费标杆</span>
+            
+            <!-- PC端版本：标题和卡片 -->
+            <div class="pc-benchmark-section" style="display: block;">
+                <!-- 蓝色标题 -->
+                <div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 5px;" class="benchmark-title-cards">
+                    <div style="flex: 2; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600;" class="benchmark-title-card president-award">总裁特别奖</div>
+                    <div style="flex: 1; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600;" class="benchmark-title-card business-award">业务成功奖</div>
+                </div>
+                
+                <!-- 说明文本 -->
+                <div style="text-align: center; margin-bottom: 20px; color: #666;">符合总裁特别奖条件的前5个名额可申报标杆，先报先得</div>
+                
+                <!-- 三个卡片 -->
+                <div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 40px; flex-wrap: wrap;" class="benchmark-cards-container">
+                    <!-- 续费标杆卡片 -->
+                    <div style="flex: 1; min-width: 300px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" class="benchmark-card renewal-card">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <span style="font-size: 2rem; margin-right: 10px; color: #f59e0b;">🏅</span>
+                            <span style="font-size: 1.2rem; font-weight: 600;">续费标杆</span>
+                        </div>
+                        <div style="color: #555; margin-bottom: 10px;">📄 指标说明：历史已签约的投流合同，客户基于效果继续付费续签合同的项目（投流续费&机器人续费）</div>
+                        <div style="color: #555; margin-bottom: 5px;">
+                            📊 激励奖金：每续费一个项目，由广分总裁通衡颁发奖金 
+                            <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">1000元</span>
+                            （售前50%，交付50%）
+                        </div>
                     </div>
-                    <div style="color: #555; margin-bottom: 10px;">📄 指标说明：历史已签约的投流合同，客户基于效果继续付费续签合同的项目（投流续费&机器人续费）</div>
-                    <div style="color: #555; margin-bottom: 5px;">
+                    
+                    <!-- 推广标杆卡片 -->
+                    <div style="flex: 1; min-width: 300px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" class="benchmark-card promotion-card">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <span style="font-size: 2rem; margin-right: 10px; color: #f59e0b;">🌟</span>
+                            <span style="font-size: 1.2rem; font-weight: 600;">推广标杆</span>
+                        </div>
+                        <div style="color: #555; margin-bottom: 10px;">📄 指标说明：试点项目获得客户认可，在同公司成功推广到其他项目，并完成签约（投流&机器人）</div>
+                        <div style="color: #555; margin-bottom: 5px;">
+                            📊 激励奖金：每一个客户推广成功，由广分总裁通衡颁发奖金 
+                            <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">1000元</span>
+                            （售前50%，交付50%）
+                        </div>
+                    </div>
+                    
+                    <!-- 业务成功奖卡片 -->
+                    <div style="flex: 1; min-width: 300px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" class="benchmark-card success-card">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <span style="font-size: 2rem; margin-right: 10px; color: #0ea5e9;">💎</span>
+                            <span style="font-size: 1.2rem; font-weight: 600;">业务成功奖</span>
+                        </div>
+                        <div style="color: #555; margin-bottom: 10px;">1. 线索成本低于或等于城市平均大盘的场次（比如广州450元/条），每条有效线索（自己人和客户的水军不算）：奖励 
+                            <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">10元</span>；
+                        </div>
+                        <div style="color: #555; margin-bottom: 10px;">2. 每条到访奖励 
+                            <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">50元</span>；
+                            （单周10组可大群通报奖励）
+                        </div>
+                        <div style="color: #555; margin-bottom: 5px;">3. 每套成交奖励 
+                            <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">500元</span>
+                            （大群海报通报）
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 移动端版本：使用不同的HTML顺序 -->
+            <div class="mobile-benchmark-section" style="display: none;">
+                <!-- 总裁特别奖蓝色标题 -->
+                <div style="width: 100%; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600; margin-bottom: 10px;">总裁特别奖</div>
+                
+                <!-- 说明文本 -->
+                <div style="text-align: center; margin-bottom: 20px; color: #666;">符合总裁特别奖条件的前5个名额可申报标杆，先报先得</div>
+                
+                <!-- 续费标杆卡片 -->
+                <div style="width: 100%; background: white; border-radius: 12px; padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 15px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <span style="font-size: 1.8rem; margin-right: 10px; color: #f59e0b;">🏅</span>
+                        <span style="font-size: 1.1rem; font-weight: 600;">续费标杆</span>
+                    </div>
+                    <div style="color: #555; margin-bottom: 10px; font-size: 0.95rem;">📄 指标说明：历史已签约的投流合同，客户基于效果继续付费续签合同的项目（投流续费&机器人续费）</div>
+                    <div style="color: #555; margin-bottom: 5px; font-size: 0.95rem;">
                         📊 激励奖金：每续费一个项目，由广分总裁通衡颁发奖金 
                         <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">1000元</span>
                         （售前50%，交付50%）
@@ -1128,33 +1190,36 @@
                 </div>
                 
                 <!-- 推广标杆卡片 -->
-                <div style="flex: 1; min-width: 300px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" class="benchmark-card promotion-card">
+                <div style="width: 100%; background: white; border-radius: 12px; padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 15px;">
                     <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                        <span style="font-size: 2rem; margin-right: 10px; color: #f59e0b;">🌟</span>
-                        <span style="font-size: 1.2rem; font-weight: 600;">推广标杆</span>
+                        <span style="font-size: 1.8rem; margin-right: 10px; color: #f59e0b;">🌟</span>
+                        <span style="font-size: 1.1rem; font-weight: 600;">推广标杆</span>
                     </div>
-                    <div style="color: #555; margin-bottom: 10px;">📄 指标说明：试点项目获得客户认可，在同公司成功推广到其他项目，并完成签约（投流&机器人）</div>
-                    <div style="color: #555; margin-bottom: 5px;">
+                    <div style="color: #555; margin-bottom: 10px; font-size: 0.95rem;">📄 指标说明：试点项目获得客户认可，在同公司成功推广到其他项目，并完成签约（投流&机器人）</div>
+                    <div style="color: #555; margin-bottom: 5px; font-size: 0.95rem;">
                         📊 激励奖金：每一个客户推广成功，由广分总裁通衡颁发奖金 
                         <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">1000元</span>
                         （售前50%，交付50%）
                     </div>
                 </div>
                 
+                <!-- 业务成功奖蓝色标题 - 放在白色卡片后面 -->
+                <div style="width: 100%; background-color: #1a56db; color: white; text-align: center; padding: 16px 0; border-radius: 8px; font-size: 1.25rem; font-weight: 600; margin: 20px 0 10px 0;">业务成功奖</div>
+                
                 <!-- 业务成功奖卡片 -->
-                <div style="flex: 1; min-width: 300px; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" class="benchmark-card success-card">
+                <div style="width: 100%; background: white; border-radius: 12px; padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 15px;">
                     <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                        <span style="font-size: 2rem; margin-right: 10px; color: #0ea5e9;">💎</span>
-                        <span style="font-size: 1.2rem; font-weight: 600;">业务成功奖</span>
+                        <span style="font-size: 1.8rem; margin-right: 10px; color: #0ea5e9;">💎</span>
+                        <span style="font-size: 1.1rem; font-weight: 600;">业务成功奖</span>
                     </div>
-                    <div style="color: #555; margin-bottom: 10px;">1. 线索成本低于或等于城市平均大盘的场次（比如广州450元/条），每条有效线索（自己人和客户的水军不算）：奖励 
+                    <div style="color: #555; margin-bottom: 10px; font-size: 0.95rem;">1. 线索成本低于或等于城市平均大盘的场次（比如广州450元/条），每条有效线索（自己人和客户的水军不算）：奖励 
                         <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">10元</span>；
                     </div>
-                    <div style="color: #555; margin-bottom: 10px;">2. 每条到访奖励 
+                    <div style="color: #555; margin-bottom: 10px; font-size: 0.95rem;">2. 每条到访奖励 
                         <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">50元</span>；
                         （单周10组可大群通报奖励）
                     </div>
-                    <div style="color: #555; margin-bottom: 5px;">3. 每套成交奖励 
+                    <div style="color: #555; margin-bottom: 5px; font-size: 0.95rem;">3. 每套成交奖励 
                         <span style="background-color: #eaf1fd; color: #1a56db; font-weight: bold; padding: 2px 8px; border-radius: 6px;">500元</span>
                         （大群海报通报）
                     </div>
@@ -1235,6 +1300,29 @@
                 tabs[index].classList.add('active');
                 contents[index].classList.add('active');
             };
+            
+            // 检测是否是移动设备
+            function isMobileDevice() {
+                return (window.innerWidth <= 768);
+            }
+            
+            // 根据设备类型显示对应的标杆奖项版本
+            function setLayoutBasedOnDevice() {
+                const pcSection = document.querySelector('.pc-benchmark-section');
+                const mobileSection = document.querySelector('.mobile-benchmark-section');
+                
+                if (isMobileDevice()) {
+                    pcSection.style.display = 'none';
+                    mobileSection.style.display = 'block';
+                } else {
+                    pcSection.style.display = 'block';
+                    mobileSection.style.display = 'none';
+                }
+            }
+            
+            // 页面加载和窗口大小改变时检测设备类型
+            setLayoutBasedOnDevice();
+            window.addEventListener('resize', setLayoutBasedOnDevice);
             
             // 初始化员工名字显示
             updateEmployeeDisplay();
