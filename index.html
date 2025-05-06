@@ -431,7 +431,61 @@
                 height: 44px;
                 border-radius: 12px;
             }
+            
+            /* 移动端卡片样式优化 */
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 0 10px;
+            }
+            
+            .card {
+                padding: 22px 16px;
+                min-height: auto;
+            }
+            
+            .card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .card p {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+                line-height: 1.6;
+            }
+            
+            .highlight {
+                font-size: 0.95rem;
+                padding: 2px 6px;
+            }
+            
+            .section-title {
+                padding: 0 10px;
+            }
+            
+            .section-title h2 {
+                font-size: clamp(22px, 6vw, 28px);
+                margin-bottom: 12px;
+            }
+            
+            .section-title p {
+                font-size: clamp(14px, 4vw, 18px);
+            }
+            
+            /* 移动端标杆奖项样式优化 */
+            #tab3 [style*="display: flex; justify-content: space-between;"] {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            #tab3 [style*="flex: 1; min-width: 300px;"] {
+                min-width: auto;
+                margin-bottom: 10px;
+                padding: 18px;
+            }
         }
+        
         @media (max-width: var(--mobile)) {
             .tabs-container {
                 padding: 0;
@@ -439,141 +493,87 @@
             }
             .tab {
                 font-size: 1rem;
-                padding: 0 8px;
+                padding: 0 12px;
                 height: 40px;
                 border-radius: 8px;
+                min-width: 90px;
+            }
+            
+            .nav-content {
+                padding: 5px 10px;
+            }
+            
+            .banner {
+                padding: clamp(80px, 15vh, 120px) 0 clamp(30px, 5vh, 50px);
+            }
+            
+            .banner h1 {
+                font-size: clamp(22px, 6vw, 28px);
+                padding: 0 16px;
+            }
+            
+            .card {
+                padding: 16px 14px;
+                border-radius: 12px;
+            }
+            
+            .card-icon {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+            }
+            
+            /* 提高移动端点击区域 */
+            .tab, .card, .nav-link, .contact-btn {
+                touch-action: manipulation;
+            }
+            
+            /* 移动端内容边距优化 */
+            .content-section {
+                padding: 20px 0;
+            }
+            
+            /* 防止移动端文字溢出 */
+            .card p, .highlight, #tab3 [style*="color: #555;"] {
+                word-break: break-word;
+                hyphens: auto;
+            }
+            
+            /* 移动端中的标杆奖项卡片 */
+            #tab3 [style*="flex: 1; min-width: 300px;"] {
+                padding: 16px 14px;
+            }
+            
+            #tab3 [style*="font-size: 2rem;"] {
+                font-size: 1.7rem !important;
+            }
+            
+            #tab3 [style*="font-size: 1.2rem; font-weight: 600;"] {
+                font-size: 1.1rem !important;
             }
         }
-        /* 暗色模式下Tab栏无大卡片，仅按钮保留 */
-        @media (prefers-color-scheme: dark) {
-            .tabs-container {
-                background: none;
-                border: none;
-            }
+
+        @media (max-width: 380px) {
             .tab {
-                background: rgba(30,40,60,0.55);
-                color: #e5e7eb;
+                padding: 0 8px;
+                min-width: 80px;
+                font-size: 0.9rem;
             }
-            .tab.active {
-                background: rgba(26,86,219,0.22);
-                color: #7baaff;
-                border-bottom: 3px solid #7baaff;
+            
+            .banner h1 {
+                font-size: clamp(20px, 5.5vw, 24px);
             }
-        }
-        
-        /* 底部区域优化 */
-        .footer {
-            background: #1f2937;
-            background: linear-gradient(135deg, #1a56db 0%, #1f2937 100%);
-            padding: clamp(40px, 5vh, 50px) 0 clamp(20px, 3vh, 30px);
-            position: relative;
-            min-height: 200px;
-            overflow: hidden;
-            margin-top: var(--section-spacing);
-        }
-        
-        .employee-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .employee-item {
-            color: white;
-            opacity: 0;
-            position: absolute;
-            text-align: center;
-            font-weight: 500;
-            transform: scale(var(--scale, 0.8));
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            animation: fadeInOut var(--duration, 3s) ease-in-out 1;
-            animation-fill-mode: forwards;
-            animation-delay: var(--delay, 0s);
-            z-index: var(--z-index, 1);
-            padding: 0;
-            margin: 0;
-            pointer-events: none;
-        }
-        
-        .employee-item .emoji {
-            font-size: calc(1.2em + 0.7vw);
-            margin-bottom: 3px;
-            line-height: 1;
-        }
-        
-        .employee-item .name {
-            font-size: calc(0.6em + 0.4vw);
-            line-height: 1;
-        }
-        
-        @keyframes fadeInOut {
-            0% {
-                opacity: 0;
-                transform: translateY(10px) scale(var(--scale, 0.8));
+            
+            .card h3 {
+                font-size: 1.1rem;
             }
-            15%, 85% {
-                opacity: 1;
-                transform: translateY(0) scale(var(--scale, 0.8));
+            
+            .card p, .highlight {
+                font-size: 0.9rem;
             }
-            100% {
-                opacity: 0;
-                transform: translateY(-10px) scale(var(--scale, 0.8));
-            }
-        }
-        
-        /* 悬浮按钮优化 */
-        .float-button {
-            position: fixed;
-            bottom: clamp(20px, 4vh, 30px);
-            right: clamp(20px, 4vw, 30px);
-            width: var(--min-touch-target);
-            height: var(--min-touch-target);
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: var(--icon-size);
-            cursor: pointer;
-            box-shadow: var(--card-shadow);
-            z-index: 1000;
-            transition: transform 0.3s;
-            touch-action: manipulation;
-        }
-        
-        @media (hover: hover) {
-            .float-button:hover {
-                transform: scale(1.1);
-            }
-        }
-        
-        @media (max-width: var(--tablet)) {
+            
             .tabs {
-                justify-content: space-between;
-                padding: calc(var(--element-spacing) / 2) 0;
-            }
-            
-            .tab {
-                font-size: clamp(14px, 3.5vw, 16px);
-                padding: calc(var(--min-touch-target) / 4) calc(var(--min-touch-target) / 3);
-            }
-            
-            .employee-container {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
-        }
-        
-        @media (max-width: var(--mobile)) {
-            .employee-container {
-                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+                padding: 8px 0;
             }
         }
         
@@ -591,6 +591,20 @@
             
             .note {
                 background-color: #374151;
+            }
+            
+            .tabs-container {
+                background: none;
+                border: none;
+            }
+            .tab {
+                background: rgba(30,40,60,0.55);
+                color: #e5e7eb;
+            }
+            .tab.active {
+                background: rgba(26,86,219,0.22);
+                color: #7baaff;
+                border-bottom: 3px solid #7baaff;
             }
         }
         
@@ -844,6 +858,100 @@
                 border-radius: 0 0 16px 16px;
                 box-shadow: 0 4px 24px 0 rgba(26,86,219,0.06);
                 padding: 20px;
+            }
+        }
+        
+        /* 底部区域优化 */
+        .footer {
+            background: #1f2937;
+            background: linear-gradient(135deg, #1a56db 0%, #1f2937 100%);
+            padding: clamp(40px, 5vh, 50px) 0 clamp(20px, 3vh, 30px);
+            position: relative;
+            min-height: 200px;
+            overflow: hidden;
+            margin-top: var(--section-spacing);
+        }
+        
+        .employee-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .employee-item {
+            color: white;
+            opacity: 0;
+            position: absolute;
+            text-align: center;
+            font-weight: 500;
+            transform: scale(var(--scale, 0.8));
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInOut var(--duration, 3s) ease-in-out 1;
+            animation-fill-mode: forwards;
+            animation-delay: var(--delay, 0s);
+            z-index: var(--z-index, 1);
+            padding: 0;
+            margin: 0;
+            pointer-events: none;
+        }
+        
+        .employee-item .emoji {
+            font-size: calc(1.2em + 0.7vw);
+            margin-bottom: 3px;
+            line-height: 1;
+        }
+        
+        .employee-item .name {
+            font-size: calc(0.6em + 0.4vw);
+            line-height: 1;
+        }
+        
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(10px) scale(var(--scale, 0.8));
+            }
+            15%, 85% {
+                opacity: 1;
+                transform: translateY(0) scale(var(--scale, 0.8));
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-10px) scale(var(--scale, 0.8));
+            }
+        }
+        
+        /* 悬浮按钮优化 */
+        .float-button {
+            position: fixed;
+            bottom: clamp(20px, 4vh, 30px);
+            right: clamp(20px, 4vw, 30px);
+            width: var(--min-touch-target);
+            height: var(--min-touch-target);
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--icon-size);
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            z-index: 1000;
+            transition: transform 0.3s;
+            touch-action: manipulation;
+        }
+        
+        @media (hover: hover) {
+            .float-button:hover {
+                transform: scale(1.1);
             }
         }
     </style>
