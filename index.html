@@ -503,15 +503,36 @@
                 order: 2;
             }
             
-            /* 移动端标题卡片布局重置 */
+            /* 移动端标题卡片布局重置 - 修复版 */
             .benchmark-title-cards {
+                display: flex;
                 flex-direction: column;
                 gap: 10px;
             }
             
-            .benchmark-title-card.president-award,
-            .benchmark-title-card.business-award {
+            /* 重新排序标题卡片 */
+            .benchmark-title-card.president-award {
+                order: 1;
                 flex: 1;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            /* 将业务成功奖蓝色标题放在白色标杆卡片后面 */
+            .benchmark-title-card.business-award {
+                order: 4; /* 放在所有白色卡片后面 */
+                flex: 1;
+                width: 100%;
+                margin-top: 20px; /* 增加顶部间距 */
+            }
+            
+            /* 确保移动端视图下正确的显示顺序 */
+            #tab3 {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            #tab3 > * {
                 width: 100%;
             }
         }
